@@ -88,6 +88,7 @@ depth1=3
 maxDepth = 0
 count=0
 
+#function to check the number of days and places left with the organisation
 def checkAndSubtractSpla(key):
     np_days = dict_fetch_value_user.get(key)[1]
     temp=np.full(7,0,int)
@@ -106,7 +107,7 @@ def checkoutTime():
         getOutput()
         exit(0)
 
-
+#function to check the number of days and places left with the organisation
 def checkAndSubtractLahsa(key):
     np_days = dict_fetch_value_user.get(key)[1]
     temp = np.full(7, 0, int)
@@ -206,7 +207,7 @@ def play():
 
 
 
-
+#alternating recursion which allows spla and lahsa to play turn by turn
 def playSpla(count, spla, lahsa, parent):
     global total_people_SPLA_pool
     global total_people_LAHSA_pool
@@ -323,7 +324,7 @@ def playLahsa(count, spla, lahsa, parent):
     return
 
 
-
+#achieving aplha beta pruning
 class AlphaBeta:
     def __init__(self, game_tree):
         self.game_tree = game_tree
@@ -412,10 +413,12 @@ def main():
     global total_people_SPLA_pool
     global total_people_LAHSA_pool
     global maxDepth
-    maxDepth = max(len(total_people_SPLA_pool), len(total_people_LAHSA_pool))*2 + 1
+    maxDepth = max(len(total_people_SPLA_pool), len(total_people_LAHSA_pool))*2 + 1 #max depth is set because we wont achiecve new answers after this value
 
     temp=total_people_SPLA_pool[:]
 
+    
+    #logic for iterative deepning 
     while depth1 <= maxDepth:
         
         play()
